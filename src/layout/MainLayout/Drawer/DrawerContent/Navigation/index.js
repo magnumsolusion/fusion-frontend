@@ -44,9 +44,11 @@ const Navigation = () => {
   }, []);
 
   const GetMenu = async (uid) => {
+    
     try {
       var item = [];
           const response1 = await axios.get(`${apiUrl}/api/getParentMenu/${uid}`);
+         
           if (response1.data && Array.isArray(response1.data)) {
             for (var j = 0; j < response1.data.length; j++){
               var formData = {
@@ -89,7 +91,7 @@ const Navigation = () => {
                 Authorization: `Bearer ${token}`,
               },
             });
-            alert('aaa');
+            
             setEmailEdit(item == undefined ? [] : item);
              if(response4.data.roles_name.toLocaleLowerCase() != "SuperAdmin".toLocaleLowerCase()){
               

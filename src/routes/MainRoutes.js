@@ -4,7 +4,7 @@ import { lazy } from 'react';
 import Loadable from 'components/Loadable';
 // import MinimalLayout from 'layout/MinimalLayout/index';
 import MainLayout from 'layout/MainLayout/index';
-
+import User from 'pages/extra-pages/User';
 
 // render - dashboard
 // const DashboardDefault = Loadable(lazy(() => import('pages/dashboard')));
@@ -144,6 +144,10 @@ const MainRoutes = {
     {
       path: 'DirectSellingEdit/:id',
       element: <DirectSellingEdit />
+    },
+    {
+      path: 'Users',
+      element: <User />
     },
     {
       path: 'Menu',

@@ -13,6 +13,7 @@ import Box from '@mui/material/Box';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+//import { filter } from 'lodash';
 
 
 
@@ -68,12 +69,45 @@ const Vendor = () => {
   const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
   const [deletingId, setDeletingId] = useState(null);
   const [deletingVendorName, setDeletingVendorName] = useState('');
+  //const [filter, setFilter] = useState({});
+  const [sortModel, setsortModel] = useState({})
+  
+  const paging = {
+    page: 0,
+    pageSize: 1,
+  }
 
+  var search=null;
+  var sort = null;
+  const [paginationModel, setPaginationModel] = useState(paging);
+  const onPaginationModelChange = React.useCallback((pagingModel) => {
+    pagingModel.filterModel = search;
+    pagingModel.sortModel = sort;
+    setPaginationModel(pagingModel);
+  },[]);
+
+  const onFilterChange = React.useCallback((filterModel) => {
+    // setFilter({ filterModel: { ...filterModel } });
+     setFilterModel({ ...filterModel } );
+     search = { ...filterModel};
+     paging.filterModel = { ...filterModel };
+     setPaginationModel(paging);
+  },[]);
+
+  const handleSortModelChange = React.useCallback((sortModel) => {
+    // Here you save the data you need from the sort model
+    // setQueryOptions({ sortModel: [...sortModel] });
+    //alert('aaa');
+    setsortModel(sortModel);
+    paging.sortModel = { ...sortModel };
+    sort = { ...sortModel };
+    setPaginationModel(paging);
+  }, []);
+
+  const [rowCountState, setRowCountState] = useState(0);
 
 //  GET DATA TO MODAL 
-const handleOpenEdit = async (id) => {
-
-
+  const handleOpenEdit = async (id) => {
 
   try {
     const response = await axios.get(`${apiUrl}/api/getVendorById/${id}`, {
@@ -126,7 +160,7 @@ const handleOpenEdit = async (id) => {
   
   useEffect(() => {
     refreshToken();
-  
+   
   }, []);
 
   const refreshToken = async () => {
@@ -146,13 +180,20 @@ const handleOpenEdit = async (id) => {
 useEffect(() => {
   const fetchData = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/api/getVendor`, {
+      const response = await axios.get(`${apiUrl}/api/getVendor`, {params : paginationModel}, {
         headers: {
           Authorization: `Bearer ${token}`, // Add your token if needed
         },
       });
       setRows(response.data); 
 
+      const response2 = await axios.get(`${apiUrl}/api/getVendorCount`,{params : paginationModel},  {
+        headers: {
+          Authorization: `Bearer ${token}`, // Add your token if needed
+        },
+      });
+       
+      setRowCountState(response2.data[0].count);
       // Add row numbers to the rows
       const rowsWithRowNumbers = response.data.map((row, index) => ({
         ...row,
@@ -166,7 +207,7 @@ useEffect(() => {
   };
 
   fetchData(); // Call the function to fetch data when the component mounts
-}, [token]); // Add token as a dependency if it's required
+}, [token,paginationModel,filterModel,sortModel]); // Add token as a dependency if it's required
 
 
 
@@ -272,7 +313,7 @@ const handleCloseModalEdit = () => {
       await axios.post(`${apiUrl}/api/registerVendor`, formData);
     
       // Fetch updated vendor data after successful submission
-      const response = await axios.get(`${apiUrl}/api/getVendor`, {
+      const response = await axios.get(`${apiUrl}/api/getVendor`, {params : paginationModel}, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -286,6 +327,15 @@ const handleCloseModalEdit = () => {
       // Update the rows state with the updated data
       setRows(response.data);
       setRows(rowsWithRowNumbers);
+
+      const response2 = await axios.get(`${apiUrl}/api/getVendorCount`,{params : paginationModel},  {
+        headers: {
+          Authorization: `Bearer ${token}`, // Add your token if needed
+        },
+      });
+       
+      setRowCountState(response2.data[0].count);
+
       modalRef.current.scrollTo(0, 0);
       console.log('Data submitted successfully');
   
@@ -331,7 +381,7 @@ const handleCloseModalEdit = () => {
       });
   
       // Fetch updated vendor data after successful submission
-      const response = await axios.get(`${apiUrl}/api/getVendor`, {
+      const response = await axios.get(`${apiUrl}/api/getVendor`, {params : paginationModel}, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -345,6 +395,15 @@ const handleCloseModalEdit = () => {
       // Update the rows state with the updated data
       setRows(response.data);
       setRows(rowsWithRowNumbers);
+
+      const response2 = await axios.get(`${apiUrl}/api/getVendorCount`,{params : paginationModel},  {
+        headers: {
+          Authorization: `Bearer ${token}`, // Add your token if needed
+        },
+      });
+       
+      setRowCountState(response2.data[0].count);
+
       modalRef.current.scrollTo(0, 0);
       console.log('Data updated successfully');
      setEnableEditAllowCustomer('')
@@ -767,11 +826,21 @@ const handleCloseModalEdit = () => {
         <DataGrid className='tablefont'
           columns={columns}
           rows={rows}
-
+          pagination
+          rowCount={rowCountState}
+         // loading={isLoading}
+          pageSizeOptions={[1]}
+          paginationModel={paginationModel}
+          paginationMode="server"
+          onPaginationModelChange={onPaginationModelChange}
+           filterMode="server"
+          onFilterModelChange={onFilterChange}
           EnableDensitySelector
           slots={{ toolbar: GridToolbar }}
           filterModel={filterModel}
-          onFilterModelChange={(newModel) => setFilterModel(newModel)}
+         // onFilterModelChange={(newModel) => setFilterModel(newModel)}
+          sortingMode="server"
+          onSortModelChange={handleSortModelChange}
           slotProps={{ toolbar: { showQuickFilter: true } }}
           columnVisibilityModel={columnVisibilityModel}
           onColumnVisibilityModelChange={(newModel) =>
