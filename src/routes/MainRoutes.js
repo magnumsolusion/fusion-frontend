@@ -31,8 +31,10 @@ const DirectBuyingEdit = Loadable(lazy(() => import('pages/extra-pages/DirectBuy
 const DirectSelling = Loadable(lazy(() => import('pages/extra-pages/DirectSelling')));
 const DirectSellingAdd = Loadable(lazy(() => import('pages/extra-pages/DirectSellingAdd')));
 const DirectSellingEdit = Loadable(lazy(() => import('pages/extra-pages/DirectSellingEdit')));
-
-
+const Roles = Loadable(lazy(() => import('pages/extra-pages/Roles')));
+const Division = Loadable(lazy(() => import('pages/extra-pages/Division')));
+const Menu = Loadable(lazy(() => import('pages/extra-pages/Menu')));
+const RolesAction = Loadable(lazy(() => import('pages/extra-pages/RolesAction')));
 // render - utilities
 // const Typography = Loadable(lazy(() => import('pages/components-overview/Typography')));
 // const Color = Loadable(lazy(() => import('pages/components-overview/Color')));
@@ -142,8 +144,23 @@ const MainRoutes = {
     {
       path: 'DirectSellingEdit/:id',
       element: <DirectSellingEdit />
-    }
-
+    },
+    {
+      path: 'Menu',
+      element: <Menu />
+    },
+    {
+      path: 'RolesAction',
+      element: <RolesAction />
+    }, 
+    {
+      path: '/Division',
+      element: <Division />
+    },
+    {
+      path: '/Roles',
+      element: <Roles />
+    },
   ]
 };
 
