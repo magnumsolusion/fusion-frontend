@@ -1,0 +1,385 @@
+/* Define keyframes for smooth blinking effect */
+@keyframes blink {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  /* Apply animation to the text */
+  .blinking-text {
+    color: brown;
+    animation: blink 2s linear infinite; /* Change 2s to adjust the duration of each blink */
+    font-size: 16px;
+  }
+  .success-blinking-text {
+    color: rgb(0, 112, 26);
+    animation: blink 2s linear infinite; /* Change 2s to adjust the duration of each blink */
+    font-size: 16px;
+    margin: auto;
+  }
+  .modals {
+    position: absolute;
+    top: 50% ;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 1000px;
+    max-height: 80vh; /* Set a maximum height (80% of the viewport height) */
+    overflow-y: auto; /* Enable vertical scrolling when content overflows */
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    /* display: flex;
+    flex-direction: column; */
+    height: auto;
+  }
+  .modals-delete {
+    position: absolute;
+    top: 50% ;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    max-width: 600px;
+    max-height: 40vh; /* Set a maximum height (80% of the viewport height) */
+    overflow-y: auto; /* Enable vertical scrolling when content overflows */
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    /* display: flex;
+    flex-direction: column; */
+    height: auto;
+  }
+  .add-button {
+    padding: 5px 10px;
+    height: 35px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50; /* Green background color */
+    color: white; /* White text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+  
+  }
+  
+  /* Style for hover effect */
+  .add-button:hover {
+    background-color: #45a049; /* Darker green color on hover */
+  }
+
+  .cancel-button {
+    padding: 5px 10px;
+    height: 35px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #9fa09f; /* Green background color */
+    color: white; /* White text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+  
+  }
+  
+  /* Style for hover effect */
+  .cancel-button:hover {
+    background-color: #676767; /* Darker green color on hover */
+  }
+
+  .submit-button {
+    padding: 5px 10px;
+    height: 35px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1280e6; /* Green background color */
+    color: white; /* White text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+  }
+  
+  /* Style for hover effect */
+  .submit-button:hover {
+    background-color: #1070ca; /* Darker green color on hover */
+  }
+
+  .close-button {
+    padding: 5px 10px;
+    height: 35px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f32308; /* Green background color */
+    color: white; /* White text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+  }
+  
+  /* Style for hover effect */
+  .close-button:hover {
+    background-color: #dd2108; /* Darker green color on hover */
+  }
+
+
+
+  .edit-button {
+    padding: 5px 10px;
+    height: 35px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f39108; /* Green background color */
+    color: white; /* White text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+  }
+  
+  /* Style for hover effect */
+  .edit-button:hover {
+    background-color: #e98b08; /* Darker green color on hover */
+  }
+
+  .delete-button {
+    padding: 5px 10px;
+    height: 35px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f32308; /* Green background color */
+    color: white; /* White text color */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+  }
+  
+  /* Style for hover effect */
+  .delete-button:hover {
+    background-color: #dd2108; /* Darker green color on hover */
+  }
+
+
+
+  .select-element {
+    /* Add your desired styles for the element */
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    width: fit-content; /* Adjust as needed */
+    background-color: #fff; border-radius: 4px;
+    width: 33%;
+    height: 40px;
+  }
+  
+  .select-element:hover {
+    /* Style changes when the element is hovered */
+    border-color: #69c0ff;
+  }
+  .select-element.clicked {
+    /* Style changes when the element is clicked */
+    background-color: #69c0ff;
+    box-shadow: 0 0 10px 5px #a7a8a9;
+
+  }
+
+  .custom-textarea {
+    /* Base styles for the textarea */
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    width: 33%;
+    height: 100px; /* Adjust the height as needed */
+    border-radius: 4px;
+    resize: vertical; /* Allow vertical resizing */
+    transition: border-color 0.3s ease; /* Smooth transition for border color */
+  }
+  
+  .custom-textarea:hover {
+    /* Style changes when the textarea is hovered */
+    border-color: #69c0ff;
+  }
+  
+  .custom-textarea:focus {
+    /* Style changes when the textarea is focused */
+    outline: none; /* Remove default focus outline */
+    border-color: #69c0ff;
+    box-shadow: 0 0 10px 5px #a7a8a9;
+  }
+ .tablefont {
+
+font-size: 13px;
+border: '1px solid grey';
+font-family: arial;
+border: #ebebeb 1px solid;
+padding: 3px;
+ }
+/* CSS for styling the table with elegant colors and hover effects */
+/* Styles for the table */
+/* Styles for the table */
+.styled-table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Styles for table rows */
+.table-row {
+  display: table-row;
+}
+
+/* Styles for table cells */
+.table-cell {
+  display: table-cell;
+  padding: 8px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+/* Styles for table header */
+.header {
+  font-weight: bold;
+  background-color: #f2f2f2;
+}
+.table-row:hover {
+  background-color: #c1d3ff; /* Change to desired hover color */
+}
+
+.boxy {
+
+width: 98%;
+
+
+
+}
+.wrapper-close-btn {
+
+float:right;
+right: 0;
+padding: 3px;
+}
+.wrapper-submit-btn {
+
+  float:right;
+  right: 0;
+  padding: 3px;
+  }
+  .wrapper-add-btn {
+    padding-bottom: 5px;
+    }
+
+    .wrapper-form {
+      display: flex;
+
+
+      width:100%; /* Adjust the width as needed */
+      /* Other styling specific to your layout */
+      float: left;
+    }
+    
+    /* Adjusting width for smaller screens */
+    @media (max-width: 768px) {
+      .wrapper-form {
+        width: 100%; /* Take full width on smaller screens */
+      }
+    }
+
+    .wrapper-form-po {
+      display: flex;
+
+
+      width:100%; /* Adjust the width as needed */
+      /* Other styling specific to your layout */
+      float: left;
+    }
+    
+    /* Adjusting width for smaller screens */
+    @media (max-width: 768px) {
+      .wrapper-form {
+        width: 100%; /* Take full width on smaller screens */
+      }
+    }
+
+
+
+
+
+    .container-form {
+      display: flex;
+
+    }
+    
+    .column-form {
+      flex: 1;
+      padding: 20px;
+      border: 1px solid #ccc;
+      margin: 5px;
+      border-radius: 5px;
+    }
+    @media (max-width: 768px) {
+      .column-form {
+        flex: 1 0 100%; /* One column on smaller screens */
+        border-radius: 5px;
+      }
+      .container-form {
+        display:block; 
+      }
+    }
+    .bgcolor-leftbar {
+  background-color: #676767;
+
+
+    }
+
+    /* Basic table styles */
+.table {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 100%; /* Adjust as needed */
+  margin: 0 auto; /* Centers the table */
+  width: 100%;
+}
+
+.table-row {
+  display: flex;
+}
+
+.header {
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
+.table-cell {
+  flex: 1;
+
+  border-right: 1px solid #ccc;
+  text-align: center;
+}
+
+/* Remove right border for the last cell in each row */
+.table-cell:last-child {
+  border-right: none;
+}
+
+/* Alternate row colors */
+.table-row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+.read-only {
+
+background-color: #f7f7f7;
+
+
+}
+
+.read-only-grandtotal {
+
+  background-color: #ff8686;
+  
+  
+  }
